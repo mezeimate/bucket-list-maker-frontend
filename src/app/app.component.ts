@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {AuthenticationService} from "./authentication/services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bucketListMaker-frontend';
+  email: string = '';
+  password: string = '';
+
+  constructor(public authenticationService: AuthenticationService) { }
+
 }

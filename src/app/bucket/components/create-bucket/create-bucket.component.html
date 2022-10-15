@@ -1,0 +1,13 @@
+<div class="p-inputgroup">
+    <span class="p-inputgroup-addon"> <i class="pi pi-bars"></i> </span>
+    <input type="text" [(ngModel)]="title" pInputText placeholder="Title">
+</div>
+
+<div class="p-inputgroup">
+    <span class="p-inputgroup-addon"> <i class="pi pi-book"></i> </span>
+    <input type="text" [(ngModel)]="description" pInputText placeholder="Description">
+</div>
+
+<div>
+    <p-button (click)="bucketService.createBucket(title, description)">Create</p-button>
+</div>

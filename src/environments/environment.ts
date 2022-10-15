@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyCfh0IApkIajDLqK7urSHALmohpXtrLGzM",
+    authDomain: "bucketlistmaker-7c432.firebaseapp.com",
+    databaseURL: "https://bucketlistmaker-7c432-default-rtdb.firebaseio.com",
+    projectId: "bucketlistmaker-7c432",
+    storageBucket: "bucketlistmaker-7c432.appspot.com",
+    messagingSenderId: "500239406286",
+    appId: "1:500239406286:web:31260b128917e5573a6c9f"
+  }
 };
 
 /*
