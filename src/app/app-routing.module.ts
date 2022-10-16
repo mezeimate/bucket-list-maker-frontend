@@ -5,7 +5,7 @@ import {BucketPageComponent} from "./bucket/components/pages/bucket-page/bucket-
 
 const routes: Routes = [
     {
-        path: 'login',
+        path: 'auth',
         component: LoginPageComponent
     },
     {
