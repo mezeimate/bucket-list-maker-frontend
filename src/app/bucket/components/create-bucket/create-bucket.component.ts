@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {BucketService} from "../../services/bucket.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BucketListItemService} from "../../../authentication/services/bucket-list-item.service";
+import {AuthenticationService} from "../../../authentication/services/authentication.service";
 
 @Component({
     selector: 'app-create-bucket',
@@ -8,15 +9,28 @@ import {BucketService} from "../../services/bucket.service";
 })
 export class CreateBucketComponent implements OnInit {
 
-    title: string = '';
-    description: string = '';
+    title = ''
+    description = ''
+    @Output() onHide = new EventEmitter
+    @Input() show = false
 
     constructor(
-        public bucketService: BucketService
+        private bucketListItemService: BucketListItemService,
+        private authenticationService: AuthenticationService
     ) {
     }
 
     ngOnInit(): void {
+    }
+
+    create() {
+        this.bucketListItemService.create({
+            title: this.title,
+            description: this.description,
+            idToken: this.authenticationService.idToken
+        }).subscribe(() => {
+            this.show = false
+        })
     }
 
 }

@@ -25,7 +25,10 @@ import {BucketPageComponent} from './bucket/components/pages/bucket-page/bucket-
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {RippleModule} from "primeng/ripple";
-import {Router} from "@angular/router";
+import {DialogModule} from "primeng/dialog";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -54,14 +57,16 @@ import {Router} from "@angular/router";
         MenuModule,
         TableModule,
         ReactiveFormsModule,
-        RippleModule
+        RippleModule,
+        DialogModule,
+        InputTextareaModule,
+        ToastModule
     ],
-    providers: [],
+    providers: [MessageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
 
-    constructor(public router: Router) {
-        this.router.navigate(['auth']);
+    constructor() {
     }
 }

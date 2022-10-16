@@ -3,6 +3,7 @@ import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {Router} from '@angular/router';
 import firebase from "firebase/compat";
 import User = firebase.User;
+import {MessageService} from "primeng/api";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,8 @@ export class AuthenticationService {
 
     constructor(
         public afAuth: AngularFireAuth, // Inject Firebase auth service
-        public router: Router
+        public router: Router,
+        private messageService: MessageService
     ) {
         /* Saving user data in localstorage when
         logged in and setting up null when logged out */
@@ -40,7 +42,7 @@ export class AuthenticationService {
                 });
             })
             .catch((error) => {
-                window.alert(error.message);
+                this.messageService.add({severity:'error', summary: 'Login failed', detail: error.message});
             });
     }
 
@@ -54,7 +56,7 @@ export class AuthenticationService {
                 this.SendVerificationMail()
             })
             .catch((error) => {
-                window.alert(error.message);
+                this.messageService.add({severity:'error', summary: 'Registration failed', detail: error.message});
             });
     }
 

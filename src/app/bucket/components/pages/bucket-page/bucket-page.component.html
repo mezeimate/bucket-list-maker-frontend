@@ -5,9 +5,15 @@
     <p-table [value]="bucketListItems" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
-                Products
-                <button pButton pRipple type="button" class="p-button-raised p-button-text placeholder transition-delay-100"
-                        icon="pi pi-refresh"></button>
+                BucketList Items
+                <div>
+                    <button pButton pRipple type="button"
+                            class="p-button-raised p-button-text placeholder transition-delay-100 mr-2"
+                            icon="pi pi-plus" (click)="show=true"></button>
+                    <button pButton pRipple type="button"
+                            class="p-button-raised p-button-text placeholder transition-delay-100"
+                            icon="pi pi-refresh"></button>
+                </div>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -36,3 +42,5 @@
         </ng-template>
     </p-table>
 </div>
+
+<app-create-bucket [show]="show" (onHide)="show=false"></app-create-bucket>

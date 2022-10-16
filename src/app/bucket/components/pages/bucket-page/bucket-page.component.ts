@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BucketListItem} from "../../../interfaces/bucket-list-item.interface";
 import {AuthenticationService} from "../../../../authentication/services/authentication.service";
 import {BucketListItemService} from "../../../../authentication/services/bucket-list-item.service";
-import {BucketQueryRequest} from "../../../interfaces/bucket-query-request.interface";
+import {CreateBucketListItem} from "../../../interfaces/create-bucket-list-item.interface";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 @Component({
     selector: 'app-bucket-page',
@@ -11,15 +12,22 @@ import {BucketQueryRequest} from "../../../interfaces/bucket-query-request.inter
 })
 export class BucketPageComponent implements OnInit {
 
-    bucketListItems: BucketListItem[] = [];
-    queryRequest: BucketQueryRequest = {idToken: this.authenticationService.idToken}
+    bucketListItems: BucketListItem[] = []
+    bucketListItem!: CreateBucketListItem
+    show = false
 
     constructor(
         public authenticationService: AuthenticationService,
-        private bucketListItemService: BucketListItemService
+        private bucketListItemService: BucketListItemService,
+        private afAuth: AngularFireAuth
     ) {
-        this.bucketListItemService.query(this.queryRequest)
-            .subscribe(bucketListQueryResponse => this.bucketListItems = bucketListQueryResponse.data)
+        this.afAuth.authState.subscribe(u => {
+            if (u) {
+                u.getIdToken().then((idToken) => this.bucketListItemService.query({
+                    idToken: idToken
+                }).subscribe(bucketListQueryResponse => this.bucketListItems = bucketListQueryResponse.data))
+            }
+        })
     }
 
     ngOnInit(): void {
@@ -29,10 +37,6 @@ export class BucketPageComponent implements OnInit {
         console.log(item)
     }
 
-    update() {
-    }
-
     delete() {
     }
-
 }
