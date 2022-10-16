@@ -1,22 +1,38 @@
 <button pButton pRipple type="button" class="p-button-raised p-button-text placeholder col-md transition-delay-100"
         label="Sign out" (click)="authenticationService.SignOut()"></button>
 
-
-<p-table [value]="bucketListItems" responsiveLayout="scroll">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Title</th>
-            <th>Members</th>
-            <th>Ready</th>
-            <th>--</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-        <tr>
-            <td>asd</td>
-            <td>asd</td>
-            <td>asd</td>
-            <td>asd</td>
-        </tr>
-    </ng-template>
-</p-table>
+<div class="card">
+    <p-table [value]="bucketListItems" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                Products
+                <button pButton pRipple type="button" class="p-button-raised p-button-text placeholder transition-delay-100"
+                        icon="pi pi-refresh"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Title</th>
+                <th>Members</th>
+                <th>Ready</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.members}}</td>
+                <td>{{item.ready}}</td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-search"
+                            class="p-button-rounded p-button-info p-button-outlined" (click)="read(item)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{bucketListItems ? bucketListItems.length : 0 }} items.
+            </div>
+        </ng-template>
+    </p-table>
+</div>

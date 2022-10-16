@@ -25,6 +25,7 @@ import {BucketPageComponent} from './bucket/components/pages/bucket-page/bucket-
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {RippleModule} from "primeng/ripple";
+import {Router} from "@angular/router";
 
 @NgModule({
     declarations: [
@@ -59,4 +60,8 @@ import {RippleModule} from "primeng/ripple";
     bootstrap: [AppComponent]
 })
 export class AppModule {
+
+    constructor(public router: Router) {
+        this.router.navigate(['auth']);
+    }
 }
