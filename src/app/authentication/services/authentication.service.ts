@@ -54,6 +54,9 @@ export class AuthenticationService {
                 /* Call the SendVerificationMail() function when new user sign
                 up and returns promise */
                 this.SendVerificationMail()
+                result.user?.updateProfile({
+                    displayName: "NÉÉVVV",
+                })
             })
             .catch((error) => {
                 this.messageService.add({severity:'error', summary: 'Registration failed', detail: error.message});

@@ -1,30 +1,28 @@
-<div class="col-md-12">
-    <div class="card">
+<div class="card flex justify-content-center flex-wrap w-full">
 
-        <h2>Login</h2>
+    <h2>Login</h2>
 
-        <div class="pt-5">
-            <span class="p-float-label">
-                <input id="email" [(ngModel)]="email" type="text" pInputText>
-                <label for="email" class="w-screen">Email</label>
-            </span>
-        </div>
-
-        <div class="pt-5">
-            <span class="p-float-label">
-                <input id="password" [(ngModel)]="password" type="password" pInputText>
-                <label for="password">Password</label>
-            </span>
-        </div>
-
-        <div class="pt-3">
-            <button pButton pRipple type="button"
-                    class="p-button-raised p-button-text placeholder col-md transition-delay-100"
-                    label="Sign In" (click)="authenticationService.SignIn(email, password)"></button>
-            <button pButton pRipple type="button"
-                    class="p-button-raised p-button-text placeholder col-md transition-delay-100"
-                    label="Sign Up" (click)="authenticationService.SignUp(email, password)"></button>
-        </div>
-
+    <div class="pt-5">
+        <span class="p-float-label form">
+            <input id="email" [(ngModel)]="email" type="text" pInputText>
+            <label for="email" class="w-screen">Email</label>
+        </span>
     </div>
+
+    <div class="pt-5">
+        <span class="p-float-label form">
+            <input id="password" [(ngModel)]="password" type="password" pInputText>
+            <label for="password">Password</label>
+        </span>
+    </div>
+
+    <div class="pt-3">
+        <button pButton pRipple type="button"
+                class="p-button-raised p-button-text placeholder col-md transition-delay-100"
+                label="Sign In" (click)="authenticationService.SignIn(email, password)"></button>
+        <button pButton pRipple type="button"
+                class="p-button-raised p-button-text placeholder col-md transition-delay-100"
+                label="Sign Up" (click)="authenticationService.SignUp(email, password)"></button>
+    </div>
+
 </div>
