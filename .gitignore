@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/angular,intellij,intellij+all,visualstudiocode,firebase
 # Edit at https://www.toptal.com/developers/gitignore?templates=angular,intellij,intellij+all,visualstudiocode,firebase
 
+### ENVIROMENT ###
+src/environments/environment.ts
+
 ### Angular ###
 ## Angular ##
 # compiled output
