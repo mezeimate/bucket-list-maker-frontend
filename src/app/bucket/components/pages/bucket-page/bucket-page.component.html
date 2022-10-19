@@ -1,18 +1,18 @@
-<button pButton pRipple type="button" class="p-button-raised p-button-text placeholder col-md transition-delay-100"
-        label="Sign out" (click)="authenticationService.SignOut()"></button>
-
-<div class="card">
+<div class="form shadow-5 m-4 p-6 ">
     <p-table [value]="bucketListItems" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
-                BucketList Items
+                <h3>{{authenticationService.username}}'s bucket list</h3>
                 <div>
                     <button pButton pRipple type="button"
                             class="p-button-raised p-button-text placeholder transition-delay-100 mr-2"
                             icon="pi pi-plus" (click)="show=true"></button>
                     <button pButton pRipple type="button"
-                            class="p-button-raised p-button-text placeholder transition-delay-100"
-                            icon="pi pi-refresh"></button>
+                            class="p-button-raised p-button-text placeholder transition-delay-100 mr-2"
+                            icon="pi pi-refresh" (click)="query()"></button>
+
+                    <button pButton pRipple type="button" class="p-button-raised p-button-text transition-delay-100 "
+                            label="Sign out" (click)="authenticationService.SignOut()"></button>
                 </div>
             </div>
         </ng-template>

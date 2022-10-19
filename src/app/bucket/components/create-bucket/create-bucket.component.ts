@@ -31,6 +31,8 @@ export class CreateBucketComponent implements OnInit {
         }).subscribe(() => {
             this.show = false
         })
+        this.title = ''
+        this.description = ''
     }
 
 }

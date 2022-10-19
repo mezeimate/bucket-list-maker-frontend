@@ -21,6 +21,10 @@ export class BucketPageComponent implements OnInit {
         private bucketListItemService: BucketListItemService,
         private afAuth: AngularFireAuth
     ) {
+        this.query()
+    }
+
+    query(): void {
         this.afAuth.authState.subscribe(u => {
             if (u) {
                 u.getIdToken().then((idToken) => this.bucketListItemService.query({

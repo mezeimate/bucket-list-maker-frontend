@@ -1,1 +1,43 @@
-<app-register-login></app-register-login>
+<div class="login-page">
+    <div class="form w-10 shadow-5 m-auto p-8 ">
+
+        <h1 class="mb-6 font-weight-light">{{registrationService.register ? 'Registration' : 'Login'}}</h1>
+
+        <div *ngIf="registrationService.register">
+            <span class="p-float-label mb-5">
+                <input id="displayName" class="w-full" [(ngModel)]="displayName" type="test" pInputText>
+                <label for="displayName">Display name</label>
+            </span>
+        </div>
+
+        <div>
+            <span class="p-float-label mb-5">
+                <input id="email" class="w-full" [(ngModel)]="email" type="text" pInputText>
+                <label for="email">Email</label>
+            </span>
+        </div>
+
+        <div>
+            <span class="p-float-label mb-4">
+                <input id="password" class="w-full" [(ngModel)]="password" type="password" pInputText>
+                <label for="password">Password</label>
+            </span>
+        </div>
+
+        <button pButton pRipple type="button" *ngIf="!registrationService.register"
+                class="p-button-raised p-button-text placeholder transition-delay-100 mb-2 sign-in p-2 w-full"
+                label="Sign In" (click)="authenticationService.SignIn(email, password)"></button>
+
+        <button pButton pRipple type="button" *ngIf="registrationService.register"
+                class="p-button-raised p-button-text placeholder transition-delay-100 mb-2 sign-in p-2 w-full"
+                label="Sign Up" (click)="authenticationService.SignUp(email, password, displayName)"></button>
+
+        <button pButton pRipple type="button" *ngIf="registrationService.register"
+                class="p-button-raised p-button-text placeholder transition-delay-100 mb-2 sign-in p-2 w-full"
+                label="Back to login" (click)="registrationService.register = false"></button>
+
+        <p class="message font-weight-light pt-2 cursor-pointer" *ngIf="!registrationService.register">Not registered?
+            <a class="text-blue-500" (click)="registrationService.register = true">Create an account!</a>
+        </p>
+    </div>
+</div>
