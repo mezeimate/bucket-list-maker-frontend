@@ -4,6 +4,7 @@ import {AuthenticationService} from "../../../../authentication/services/authent
 import {BucketListItemService} from "../../../../authentication/services/bucket-list-item.service";
 import {CreateBucketListItem} from "../../../interfaces/create-bucket-list-item.interface";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {MessageService} from "primeng/api";
 
 @Component({
     selector: 'app-bucket-page',
@@ -19,7 +20,8 @@ export class BucketPageComponent implements OnInit {
     constructor(
         public authenticationService: AuthenticationService,
         private bucketListItemService: BucketListItemService,
-        private afAuth: AngularFireAuth
+        private afAuth: AngularFireAuth,
+        private messageService: MessageService
     ) {
         this.query()
     }
@@ -29,7 +31,10 @@ export class BucketPageComponent implements OnInit {
             if (u) {
                 u.getIdToken().then((idToken) => this.bucketListItemService.query({
                     idToken: idToken
-                }).subscribe(bucketListQueryResponse => this.bucketListItems = bucketListQueryResponse.data))
+                }).subscribe({
+                    next: bucketListQueryResponse => this.bucketListItems = bucketListQueryResponse.data,
+                    error: () => this.messageService.add({severity: 'error', detail: 'Service Unavailable!'})
+                }))
             }
         })
     }
