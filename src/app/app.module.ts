@@ -19,8 +19,8 @@ import {AccordionModule} from 'primeng/accordion';
 import {PanelModule} from 'primeng/panel';
 import {MenuModule} from 'primeng/menu';
 import {CreateBucketComponent} from './bucket/components/create-bucket/create-bucket.component';
+import {JoinBucketComponent} from './bucket/components/join-bucket/join-bucket.component';
 import {LoginPageComponent} from './authentication/components/pages/login-page/login-page.component';
-import {RegisterLoginComponent} from './authentication/components/register-login/register-login.component';
 import {BucketPageComponent} from './bucket/components/pages/bucket-page/bucket-page.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
@@ -29,14 +29,36 @@ import {DialogModule} from "primeng/dialog";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {MessageModule} from "primeng/message";
+import {KeyFilterModule} from "primeng/keyfilter";
+import {InputMaskModule} from "primeng/inputmask";
+import {ModifyBucketComponent} from "./bucket/components/modify-bucket/modify-bucket.component";
+import {CheckboxModule} from "primeng/checkbox";
+import {ToggleButtonModule} from "primeng/togglebutton";
+import {PasswordModule} from "primeng/password";
+import {ChipModule} from "primeng/chip";
+import {SplitButtonModule} from "primeng/splitbutton";
+import {ModifyProfileComponent} from "./authentication/components/modify-profile/modify-profile.component";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
+import {FileUploadModule} from "primeng/fileupload";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import {ImageModule} from "primeng/image";
+
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
     declarations: [
         AppComponent,
         CreateBucketComponent,
         LoginPageComponent,
-        RegisterLoginComponent,
-        BucketPageComponent
+        BucketPageComponent,
+        JoinBucketComponent,
+        ModifyBucketComponent,
+        ModifyProfileComponent
     ],
     imports: [
         BrowserModule,
@@ -60,7 +82,19 @@ import {MessageService} from "primeng/api";
         RippleModule,
         DialogModule,
         InputTextareaModule,
-        ToastModule
+        ToastModule,
+        MessageModule,
+        KeyFilterModule,
+        InputMaskModule,
+        CheckboxModule,
+        ToggleButtonModule,
+        PasswordModule,
+        ChipModule,
+        SplitButtonModule,
+        ConfirmPopupModule,
+        FileUploadModule,
+        ConfirmDialogModule,
+        ImageModule,
     ],
     providers: [MessageService],
     bootstrap: [AppComponent]

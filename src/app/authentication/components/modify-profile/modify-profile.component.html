@@ -1,0 +1,26 @@
+<p-dialog header="Modify profile" [(visible)]="showDialog" [position]="'center'" (onHide)="onHide.emit()" [modal]="true"
+          [style]="{width: '35vw'}" [draggable]="false" [resizable]="false">
+
+    <span class="p-float-label mt-4 mb-4">
+        <input id="display-name-input" type="text" pInputText [(ngModel)]="profile.displayName" class="w-full">
+        <label for="display-name-input">Display name</label>
+    </span>
+
+    <div class="border-500 surface-overlay mb-4 w-full text-center">
+        <p-image alt="Profile" width="200" class=""
+                 [src]="authenticationService.getLocalUser().photoURL + ''"
+                 [preview]="true"></p-image>
+    </div>
+    <p-fileUpload mode="advanced" name="demo[]" accept="image/*"
+                  [maxFileSize]="1000000"
+                  (onSelect)="onBasicUploadAuto($event)"
+                  [showUploadButton]="false"
+                  [customUpload]="true"
+                  chooseLabel="Browse"></p-fileUpload>
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="updateProfile()" label="Save" styleClass="p-button-text"></p-button>
+    </ng-template>
+
+</p-dialog>

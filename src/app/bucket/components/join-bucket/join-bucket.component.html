@@ -1,0 +1,24 @@
+<p-dialog header="Join" [(visible)]="show" [position]="'top'" (onHide)="onHide.emit()" [modal]="true"
+          [style]="{width: '35vw'}"
+          [draggable]="false" [resizable]="false">
+
+
+    <span class="p-float-label mt-4 mb-4">
+        <input id="title-input" type="text" pInputText [(ngModel)]="inviteCode" class="w-full"
+               pattern="^[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}$">
+        <label for="title-input">722AA0F5-D690-4DC1-BDC3-7A20C8B5D22B</label>
+
+        <!--        <form #form="ngForm">-->
+        <!--            <input id="inviteCode" type="text" name="inviteCode" [(ngModel)]="inviteCode" pInputText-->
+        <!--                   [pKeyFilter]="inviteCodeRegex" [pValidateOnly]="true" placeholder="1234-1234-1234-1234"-->
+        <!--                   style="margin-right: .5em">-->
+        <!--            <p-message severity="error" text="Not a valid code!"-->
+        <!--                       [@errorState]="form.dirty && !form.valid ? 'visible' : 'hidden'"></p-message>-->
+        <!--        </form>-->
+    </span>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="join()" label="Join" styleClass="p-button-text"></p-button>
+    </ng-template>
+
+</p-dialog>

@@ -1,38 +1,55 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BucketListQueryResponse} from "../../bucket/interfaces/bucket-list-query.interface";
-import {BucketQueryRequest} from "../../bucket/interfaces/bucket-query-request.interface";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CreateBucketListItemResponse} from "../../bucket/interfaces/create-bucket-list-item-response.interface";
 import {CreateBucketListItemRequest} from "../../bucket/interfaces/create-bucket-list-item-request.interface";
+import {BucketQueryRequest} from "../../bucket/interfaces/bucket-query-request.interface";
+import {ModifyBucketListItemRequest} from "../../bucket/interfaces/modifyBucketListItemRequest";
+import {JoinBucketListItemRequest} from "../../bucket/interfaces/join-request.interface";
+import {BucketListItem} from "../../bucket/interfaces/bucket-list-item.interface";
 
-const baseURL = 'http://localhost:8080/bucket';
+const baseURL = 'http://34.116.232.220:8080/bucket';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BucketListItemService {
 
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        private httpClient: HttpClient
+    ) {
     }
 
-    query(data: BucketQueryRequest) {
-        return this.httpClient.post<BucketListQueryResponse>(`${baseURL}/query`, data);
+    public query(idToken: string, data: BucketQueryRequest) {
+        return this.httpClient.post<BucketListItem[]>(`${baseURL}/query`, data, this.makeOptions(idToken));
     }
 
-    read(id: string) {
-        return this.httpClient.get<null>(`${baseURL}/${id}`);
+    public read(idToken: string, id: string) {
+        return this.httpClient.get<BucketListItem>(`${baseURL}/get/${id}`, this.makeOptions(idToken));
     }
 
-    create(data: CreateBucketListItemRequest) {
-        return this.httpClient.post<CreateBucketListItemResponse>(`${baseURL}/create`, data);
+    public create(idToken: string, data: CreateBucketListItemRequest) {
+        return this.httpClient.post<CreateBucketListItemResponse>(`${baseURL}/create`, data, this.makeOptions(idToken));
     }
 
-    //
-    // update(id, data): Observable<any> {
-    //     return this.httpClient.put(`${baseURL}/modify/${id}`, data);
-    // }
-    //
-    // delete(id): Observable<any> {
-    //     return this.httpClient.delete(`${baseURL}/${id}`);
-    // }
+    public update(idToken: string, data: ModifyBucketListItemRequest, id: string) {
+        return this.httpClient.patch<BucketListItem>(`${baseURL}/modify/${id}`, data, this.makeOptions(idToken));
+    }
+
+    public join(idToken: string, data: JoinBucketListItemRequest) {
+        return this.httpClient.post(`${baseURL}/join`, data, this.makeOptions(idToken));
+    }
+
+    public delete(idToken: string, id: string) {
+        return this.httpClient.delete(`${baseURL}/delete/${id}`, this.makeOptions(idToken));
+    }
+
+    private makeOptions(idToken: string) {
+        return {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'SessionIdToken': idToken
+            })
+        };
+    }
+
 }

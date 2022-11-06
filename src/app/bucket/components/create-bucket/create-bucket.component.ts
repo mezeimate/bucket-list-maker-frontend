@@ -1,38 +1,49 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {BucketListItemService} from "../../../authentication/services/bucket-list-item.service";
 import {AuthenticationService} from "../../../authentication/services/authentication.service";
+import {MessageService} from "primeng/api";
 
 @Component({
     selector: 'app-create-bucket',
     templateUrl: './create-bucket.component.html',
     styleUrls: ['./create-bucket.component.css']
 })
-export class CreateBucketComponent implements OnInit {
+export class CreateBucketComponent {
 
-    title = ''
-    description = ''
-    @Output() onHide = new EventEmitter
-    @Input() show = false
+    title = '';
+    description = '';
+
+    @Input()
+    show = false
+
+    @Output()
+    onHide = new EventEmitter
+
+    @Output()
+    onAdd = new EventEmitter
 
     constructor(
+        private afAuth: AngularFireAuth,
+        private authenticationService: AuthenticationService,
         private bucketListItemService: BucketListItemService,
-        private authenticationService: AuthenticationService
+        private messageService: MessageService
     ) {
     }
 
-    ngOnInit(): void {
-    }
-
     create() {
-        this.bucketListItemService.create({
+        this.bucketListItemService.create(this.authenticationService.getIdToken() ?? '', {
             title: this.title,
-            description: this.description,
-            idToken: this.authenticationService.idToken
-        }).subscribe(() => {
-            this.show = false
+            description: this.description
+        }).subscribe({
+            next: () => {
+                this.title = '';
+                this.description = '';
+                this.show = false;
+                this.onAdd.emit();
+            },
+            error: () => this.messageService.add({severity: 'error', detail: 'Service Unavailable!'})
         })
-        this.title = ''
-        this.description = ''
     }
 
 }

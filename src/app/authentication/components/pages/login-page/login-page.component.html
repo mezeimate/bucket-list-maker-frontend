@@ -1,9 +1,9 @@
 <div class="login-page m-auto w-full lg:w-4 pt-8">
-    <div class="form w-10 shadow-5 m-auto p-8 mt-8">
+    <div class="form w-10 shadow-5 m-auto p-8 mt-8 surface-0">
 
-        <h1 class="mb-6 font-weight-light">{{registrationService.register ? 'Registration' : 'Login'}}</h1>
+        <h1 class="mb-6 font-weight-light">{{registration ? 'Registration' : 'Login'}}</h1>
 
-        <div *ngIf="registrationService.register">
+        <div *ngIf="registration">
             <span class="p-float-label mb-5">
                 <input id="displayName" class="w-full" [(ngModel)]="displayName" type="test" pInputText>
                 <label for="displayName">Display name</label>
@@ -17,27 +17,35 @@
             </span>
         </div>
 
-        <div>
+        <div *ngIf="!registration">
             <span class="p-float-label mb-4">
                 <input id="password" class="w-full" [(ngModel)]="password" type="password" pInputText>
                 <label for="password">Password</label>
             </span>
         </div>
 
-        <button pButton pRipple type="button" *ngIf="!registrationService.register"
+        <div *ngIf="registration">
+            <span class="p-float-label mb-4">
+                <p-password id="register-password" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+                            [(ngModel)]="registerPassword" [toggleMask]="true"></p-password>
+                <label for="password">Password</label>
+            </span>
+        </div>
+
+        <button pButton pRipple type="button" *ngIf="!registration"
                 class="p-button-raised p-button-text placeholder transition-delay-100 mb-2 sign-in p-2 w-full"
                 label="Sign In" (click)="authenticationService.SignIn(email, password)"></button>
 
-        <button pButton pRipple type="button" *ngIf="registrationService.register"
+        <button pButton pRipple type="button" *ngIf="registration"
                 class="p-button-raised p-button-text placeholder transition-delay-100 mb-2 sign-in p-2 w-full"
-                label="Sign Up" (click)="authenticationService.SignUp(email, password, displayName)"></button>
+                label="Sign Up" (click)="authenticationService.SignUp(email, registerPassword, displayName)"></button>
 
-        <button pButton pRipple type="button" *ngIf="registrationService.register"
+        <button pButton pRipple type="button" *ngIf="registration"
                 class="p-button-raised p-button-text placeholder transition-delay-100 mb-2 sign-in p-2 w-full"
-                label="Back to login" (click)="registrationService.register = false"></button>
+                label="Back to login" (click)="registration = !registration"></button>
 
-        <p class="message font-weight-light pt-2 cursor-pointer" *ngIf="!registrationService.register">Not registered?
-            <a class="text-blue-500" (click)="registrationService.register = true">Create an account!</a>
+        <p class="message font-weight-light pt-2 cursor-pointer float-right" *ngIf="!registration">Not registered?
+            <a class="text-blue-500" (click)="registration = !registration">Create an account!</a>
         </p>
     </div>
 </div>

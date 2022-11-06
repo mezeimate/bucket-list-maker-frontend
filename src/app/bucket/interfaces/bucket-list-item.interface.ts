@@ -1,7 +1,5 @@
-export interface BucketListItem {
-    "documentId": string,
-    "title": string,
-    "description": string,
-    "ready": boolean,
+import {BaseBucketListItem} from "./base-bucket-list-item.interface";
+
+export interface BucketListItem extends BaseBucketListItem {
     "inviteCode": string
 }
