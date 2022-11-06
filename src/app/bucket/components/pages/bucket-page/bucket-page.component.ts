@@ -3,7 +3,7 @@ import {first} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AuthenticationService} from "../../../../authentication/services/authentication.service";
 import {BucketListItemService} from "../../../../authentication/services/bucket-list-item.service";
-import {MenuItem, MessageService} from "primeng/api";
+import {MessageService} from "primeng/api";
 import {BucketListItem} from "../../../interfaces/bucket-list-item.interface";
 
 @Component({
@@ -20,17 +20,6 @@ export class BucketPageComponent {
     public showModifyPanel = false;
     public showModifyProfilePanel = false;
     public bucketListItem!: BucketListItem
-    items: MenuItem[] = [
-        {
-            label: "Profile",
-            command: () => {
-                this.showModifyProfilePanel = true
-            }
-        },
-        {
-            label: "Sign out"
-        }
-    ];
 
     constructor(
         public authenticationService: AuthenticationService,
