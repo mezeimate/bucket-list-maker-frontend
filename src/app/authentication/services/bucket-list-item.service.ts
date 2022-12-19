@@ -7,7 +7,7 @@ import {ModifyBucketListItemRequest} from "../../bucket/interfaces/modifyBucketL
 import {JoinBucketListItemRequest} from "../../bucket/interfaces/join-request.interface";
 import {BucketListItem} from "../../bucket/interfaces/bucket-list-item.interface";
 
-const baseURL = 'http://34.116.232.220:8080/bucket';
+const baseURL = 'https://site--prod--79mnbyb5gpxs.code.run/bucket';
 
 @Injectable({
     providedIn: 'root'

@@ -19,7 +19,7 @@
 
         <div *ngIf="!registration">
             <span class="p-float-label mb-4">
-                <input id="password" class="w-full" [(ngModel)]="password" type="password" pInputText>
+                <input id="password" class="w-full" (keydown.enter)="authenticationService.SignIn(email, password)" [(ngModel)]="password" type="password" pInputText>
                 <label for="password">Password</label>
             </span>
         </div>

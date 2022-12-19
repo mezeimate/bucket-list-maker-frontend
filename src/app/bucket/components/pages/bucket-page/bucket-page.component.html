@@ -27,34 +27,46 @@
                     <button pButton pRipple type="button" class="p-button-raised p-button-text transition-delay-100 "
                             label="Sign out" (click)="authenticationService.SignOut()"></button>
                 </div>
-
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th>Title</th>
                 <th>Members</th>
-                <th class="w-1">Status</th>
+                <th class="w-1 text-center">Status</th>
                 <th class="w-1"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
             <tr>
-                <td>{{item.title}}</td>
-
                 <td>
-                    <p-chip *ngFor="let member of item.members" [label]="member" image="" styleClass="mr-2"></p-chip>
+                    <p-skeleton *ngIf="loadSkeleton" height="2rem"></p-skeleton>
+                    <span *ngIf="!loadSkeleton">{{item.title}}</span>
                 </td>
 
                 <td>
-                    <i *ngIf="item.complete" class="pi pi-check text-2xl"></i>
-                    <i *ngIf="!item.complete" class="pi pi-times text-2xl"></i>
+                    <p-skeleton *ngIf="loadSkeleton" height="2rem"></p-skeleton>
+                    <span *ngIf="!loadSkeleton">
+                        <p-chip *ngFor="let member of item.members" [label]="member" image=""
+                                styleClass="mr-2"></p-chip>
+                    </span>
+                </td>
+
+                <td class="text-center">
+                    <p-skeleton *ngIf="loadSkeleton" height="2rem"></p-skeleton>
+                    <span *ngIf="!loadSkeleton">
+                        <i *ngIf="item.complete" class="pi pi-check text-2xl text-success"></i>
+                        <i *ngIf="!item.complete" class="pi pi-times text-2xl text-danger"></i>
+                    </span>
                 </td>
 
                 <td class="text-right">
-                    <button pButton pRipple type="button" icon="pi pi-cog"
-                            class="p-button-rounded p-button-info p-button-outlined"
-                            (click)="modifyAction(item)"></button>
+                    <p-skeleton *ngIf="loadSkeleton" height="2rem"></p-skeleton>
+                    <span *ngIf="!loadSkeleton">
+                        <button pButton pRipple type="button" icon="pi pi-cog"
+                                class="p-button-rounded p-button-info p-button-outlined"
+                                (click)="modifyAction(item)"></button>
+                    </span>
                 </td>
             </tr>
         </ng-template>

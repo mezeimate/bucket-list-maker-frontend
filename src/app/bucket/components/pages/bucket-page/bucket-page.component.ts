@@ -13,13 +13,14 @@ import {BucketListItem} from "../../../interfaces/bucket-list-item.interface";
 })
 export class BucketPageComponent {
 
-    public bucketListItems: BucketListItem[] = [];
+    public bucketListItems: BucketListItem[] = new Array(3);
 
     public showAddPanel = false;
     public showJoinPanel = false;
     public showModifyPanel = false;
     public showModifyProfilePanel = false;
     public bucketListItem!: BucketListItem
+    public loadSkeleton: boolean = true;
 
     constructor(
         public authenticationService: AuthenticationService,
@@ -32,7 +33,10 @@ export class BucketPageComponent {
 
     queryAction(): void {
         this.bucketListItemService.query(this.authenticationService.getIdToken() ?? '', {}).subscribe({
-            next: (bucketListQueryResponse) => this.bucketListItems = bucketListQueryResponse,
+            next: (bucketListQueryResponse) => {
+                this.bucketListItems = bucketListQueryResponse
+                this.loadSkeleton = false;
+            },
             error: () => this.messageService.add({severity: 'error', detail: 'Service Unavailable!'})
         })
     }

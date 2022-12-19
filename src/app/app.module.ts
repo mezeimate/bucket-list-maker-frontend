@@ -47,6 +47,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {ImageModule} from "primeng/image";
+import {SkeletonModule} from "primeng/skeleton";
 
 firebase.initializeApp(environment.firebase);
 
@@ -95,6 +96,7 @@ firebase.initializeApp(environment.firebase);
         FileUploadModule,
         ConfirmDialogModule,
         ImageModule,
+        SkeletonModule,
     ],
     providers: [MessageService],
     bootstrap: [AppComponent]
