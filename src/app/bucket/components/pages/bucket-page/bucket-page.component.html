@@ -1,4 +1,11 @@
 <div class="form shadow-8 m-8 p-6 surface-0">
+
+  <p-carousel [value]="trends" [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000" [showIndicators]="false">
+    <ng-template let-trends pTemplate="item">
+      <h1 class="text-center">{{trends}}</h1>
+    </ng-template>
+  </p-carousel>
+<br><br>
     <p-table [value]="bucketListItems" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
@@ -32,6 +39,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Members</th>
                 <th class="w-1 text-center">Status</th>
                 <th class="w-1"></th>
@@ -42,6 +50,10 @@
                 <td>
                     <p-skeleton *ngIf="loadSkeleton" height="2rem"></p-skeleton>
                     <span *ngIf="!loadSkeleton">{{item.title}}</span>
+                </td>
+
+                <td>
+                  {{getRandomCategory()}}
                 </td>
 
                 <td>

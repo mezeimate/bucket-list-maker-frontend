@@ -8,7 +8,6 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
-import {environment} from "../environments/environment";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {ButtonModule} from 'primeng/button';
@@ -48,6 +47,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {ImageModule} from "primeng/image";
 import {SkeletonModule} from "primeng/skeleton";
+import {environment} from "../environments/environment";
+import {CarouselModule} from "primeng/carousel";
 
 firebase.initializeApp(environment.firebase);
 
@@ -61,43 +62,44 @@ firebase.initializeApp(environment.firebase);
         ModifyBucketComponent,
         ModifyProfileComponent
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireAuthModule,
-        AngularFirestoreModule,
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        FormsModule,
-        ButtonModule,
-        CardModule,
-        InputTextModule,
-        AccordionModule,
-        PanelModule,
-        MenuModule,
-        TableModule,
-        ReactiveFormsModule,
-        RippleModule,
-        DialogModule,
-        InputTextareaModule,
-        ToastModule,
-        MessageModule,
-        KeyFilterModule,
-        InputMaskModule,
-        CheckboxModule,
-        ToggleButtonModule,
-        PasswordModule,
-        ChipModule,
-        SplitButtonModule,
-        ConfirmPopupModule,
-        FileUploadModule,
-        ConfirmDialogModule,
-        ImageModule,
-        SkeletonModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    FormsModule,
+    ButtonModule,
+    CardModule,
+    InputTextModule,
+    AccordionModule,
+    PanelModule,
+    MenuModule,
+    TableModule,
+    ReactiveFormsModule,
+    RippleModule,
+    DialogModule,
+    InputTextareaModule,
+    ToastModule,
+    MessageModule,
+    KeyFilterModule,
+    InputMaskModule,
+    CheckboxModule,
+    ToggleButtonModule,
+    PasswordModule,
+    ChipModule,
+    SplitButtonModule,
+    ConfirmPopupModule,
+    FileUploadModule,
+    ConfirmDialogModule,
+    ImageModule,
+    SkeletonModule,
+    CarouselModule,
+  ],
     providers: [MessageService],
     bootstrap: [AppComponent]
 })

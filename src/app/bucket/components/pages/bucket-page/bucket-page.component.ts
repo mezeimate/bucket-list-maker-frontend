@@ -21,6 +21,11 @@ export class BucketPageComponent {
     public showModifyProfilePanel = false;
     public bucketListItem!: BucketListItem
     public loadSkeleton: boolean = true;
+    public trends: string[] = ["The most popular trend is Learning",
+      "The second most popular trend is Sport",
+      "The third most popular trend is Carrier"];
+
+    public category: string[] = ["Travel", "Carrier", "Learning", "Extreme", "Impossible", "Sport", "Hobby"];
 
     constructor(
         public authenticationService: AuthenticationService,
@@ -56,4 +61,8 @@ export class BucketPageComponent {
     public hideModifyProfile() {
         this.showModifyProfilePanel = false;
     }
+
+  public getRandomCategory() {
+    return this.category[Math.floor(Math.random() * this.category.length)];
+  }
 }

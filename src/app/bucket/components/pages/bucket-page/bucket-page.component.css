@@ -1,3 +1,7 @@
 :host ::ng-deep .p-splitbutton .p-button :last-child{
     padding: 0;
 }
+.trends {
+  text-align: center;
+  color: aliceblue;
+}
